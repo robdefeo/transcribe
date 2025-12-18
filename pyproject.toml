@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transcribe-tool"
+version = "0.1.0"
+description = "CLI for WhisperX transcription with diarization and speaker recognition"
+readme = "README.md"
+authors = [{name = "Transcribe Contributors"}]
+requires-python = ">=3.10"
+dependencies = [
+    "typer>=0.12",
+    "pydantic>=2.7",
+    "soundfile>=0.12",
+    "numpy>=1.26",
+    "torch>=2.2",
+    "torchaudio>=2.2",
+    "ctranslate2>=4.6.2",
+    "whisperx>=3.0",
+    "pyannote.audio>=3.3,<4.0",
+    "resemblyzer>=0.1.1",
+    "tqdm>=4.66",
+    "transformers>=4.45"
+]
+
+[project.scripts]
+transcribe = "transcribe_tool.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.typer]
+colorful_output = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+]
